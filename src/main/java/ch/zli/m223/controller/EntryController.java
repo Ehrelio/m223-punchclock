@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -38,4 +40,18 @@ public class EntryController {
        return entryService.createEntry(entry);
     }
 
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Deletes an entry.", description = "deletes an entry and returns nothing.")
+    public void delete(Long id){
+        entryService.delete(id);
+    }
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Updates an entry.", description = "updates an entry and returns new version")
+    public Entry update(Entry entry){
+        return entryService.update(entry);
+    }
 }

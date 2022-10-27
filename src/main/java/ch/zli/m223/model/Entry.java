@@ -6,6 +6,8 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.time.LocalDateTime;
 
+import java.util.List;
+
 @Entity
 public class Entry {
   @Id
@@ -20,7 +22,26 @@ public class Entry {
   private LocalDateTime checkOut;
 
   @ManyToOne()
-  private Long categoryId;
+  private Category category;
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
+  }
+
+  public List<Tag> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<Tag> tags) {
+    this.tags = tags;
+  }
+
+  @ManyToMany()
+  private List<Tag> tags;
 
   public Long getId() {
     return id;
